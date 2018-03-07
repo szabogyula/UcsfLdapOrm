@@ -1,5 +1,5 @@
 {
-    "name": "ucsf/ldaporm-bundle",
+    "name": "szabogyula/ldaporm-bundle",
     "type": "symfony-bundle",
     "description": "LDAP ORM for Symfony2",
     "keywords": ["ucsf", "orm", "ldap", "symfony"],
@@ -8,6 +8,10 @@
         {
             "name": "UCSF IT Identity & Access Management",
             "email": "iam-team@ucsf.edu"
+        },
+        {
+            "name": "Gyula Szabó",
+            "email": "gyufi@szabocsalad.com"
         }
     ],
     "require": {
