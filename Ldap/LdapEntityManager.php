@@ -292,6 +292,10 @@ class LdapEntityManager
         }
 
         foreach($metadata->getMetadatas() as $attribute) {
+            if('objectClass' === $attribute) {
+                continue;
+            }
+
             $getter = 'get' . ucfirst($metadata->getKey($attribute));
             $setter = 'set' . ucfirst($metadata->getKey($attribute));
 
