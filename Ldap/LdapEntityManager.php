@@ -292,10 +292,6 @@ class LdapEntityManager
         }
 
         foreach($metadata->getMetadatas() as $attribute) {
-            if('objectClass' === $attribute) {
-                continue;
-            }
-
             $getter = 'get' . ucfirst($metadata->getKey($attribute));
             $setter = 'set' . ucfirst($metadata->getKey($attribute));
 
@@ -410,7 +406,7 @@ class LdapEntityManager
             $originalEntity = reset($result);
             if($originalEntity == false) $originalEntity = null;
         }
-        if(count($originalEntity) > 0)
+        if($originalEntity)
         {
             return $this->ldapUpdate($dn, $entity, $originalEntity);
         }
