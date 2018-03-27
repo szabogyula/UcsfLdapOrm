@@ -7,6 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Ucsf\LdapOrmBundle\Annotation\Ldap\ArrayField;
 use Ucsf\LdapOrmBundle\Annotation\Ldap\Attribute;
 use Ucsf\LdapOrmBundle\Annotation\Ldap\Must;
+use Ucsf\LdapOrmBundle\Annotation\Ldap\ObjectClass;
 use Ucsf\LdapOrmBundle\Annotation\Ldap\Operational;
 
 class LdapEntity implements \JsonSerializable {
@@ -21,7 +22,17 @@ class LdapEntity implements \JsonSerializable {
      * LdapEntity constructor.
      */
     public function __construct() {
-        $this->setObjectClass(lcfirst((new \ReflectionClass(get_class($this)))->getShortName()));
+        $reader = new AnnotationReader();
+        $annotations = $reader->getClassAnnotations(new \ReflectionClass(get_class($this)));
+
+        $objectClasses = array();
+        foreach ($annotations as $annotation) {
+            if ($annotation instanceof ObjectClass) {
+                $objectClasses[] = $annotation->getValue();
+            }
+        }
+
+        $this->setObjectClass($objectClasses);
     }
 
     
