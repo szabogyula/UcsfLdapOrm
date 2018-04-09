@@ -568,7 +568,8 @@ class LdapEntityManager
                 // If modified is not the same value as the original, and it's not empty, if must be a real modify
             } else {
                 if (is_array($value)) {
-                    $value = $this->getEntityOperands($value)[self::OPERAND_MOD];
+                    true; // nothing special to do, update the attribute to new array values
+                    // $value = $this->getEntityOperands($value)[self::OPERAND_MOD]; ???
                 } elseif($value instanceof \Datetime) { // It shouldn't happen, but tests did reveal such cases
                     $value = new DateTimeDecorator($value);
                 }
