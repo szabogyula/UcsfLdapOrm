@@ -990,6 +990,38 @@ class LdapEntityManager
 
         return $entity;
     }
+    
+    public function incrementUidNumber($dn)
+    {
+        // Connect if needed
+        $this->connect();
+        $sr = ldap_search($this->ldapResource,
+          $dn,
+          '(objectClass=inetOrgPerson)'
+        );
+        $infos = ldap_get_entries($this->ldapResource, $sr);
+        $sequence = $infos[0];
+        $newValue = $sequence['uidnumber'][0] + 1;
+        $entry = array(
+          'uidnumber' => array($newValue),
+        );
+        ldap_modify($this->ldapResource, $dn, $entry);
+        return $newValue;
+    }
+
+    public function getUidNumber($dn)
+    {
+        // Connect if needed
+        $this->connect();
+        $sr = ldap_search($this->ldapResource,
+          $dn,
+          '(objectClass=inetOrgPerson)'
+        );
+        $infos = ldap_get_entries($this->ldapResource, $sr);
+        $sequence = $infos[0];
+        $return = $sequence['uidnumber'][0];
+        return $return;
+    }
 
     private function generateSequenceValue($dn)
     {
