@@ -338,11 +338,11 @@ class LdapEntityManager
                 if (is_array($value)) {
                     foreach ($value as $val) {
                         $needle = '{CLEAR}';
-                        $cryted = '{CRYPT}';
+                        $crypted = '{CRYPT}';
                         if (strpos($val, $needle) === 0) {
                             $entry[$attribute] =  substr($val, strlen($needle));
                         }
-                        if (strpos($val, $cryted) === 0) {
+                        if (strpos($val, $crypted) === 0) {
                             $entry[$attribute] =  $val;
                         }
                     }
