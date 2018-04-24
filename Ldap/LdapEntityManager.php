@@ -550,7 +550,7 @@ class LdapEntityManager
         unset($modifiedEntry['employeeId']);
         unset($modifiedEntry['ucsfEduIDNumber']);
         unset($modifiedEntry['dn']);
-        unset($modifiedEntry['cn']);
+        //unset($modifiedEntry['cn']);
         unset($modifiedEntry['distinguishedName']);
         unset($modifiedEntry['name']);
         unset($modifiedEntry['instanceType']);
